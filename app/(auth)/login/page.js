@@ -14,35 +14,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { useRouter } from "next/navigation";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-// const defaultTheme = createTheme();
+const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const { data: session } = useSession();
-  if (session && session.user) {
-    console.log("Pass");
-  }
+
+
+  const handleLogin = async () => {
+    await signIn("google", { callbackUrl: "/expansion" });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,11 +34,10 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    signIn()
   };
 
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -98,34 +80,20 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In With Google
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3 }}>
+              Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            <Button
+              onClick={handleLogin}
+              fullWidth
+              variant="outlined"
+              sx={{ mt: 3 }}
+            >
+              Google Sign In
+            </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </>
+    </ThemeProvider>
   );
 }

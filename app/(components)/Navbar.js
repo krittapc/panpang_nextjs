@@ -18,15 +18,15 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const pages = ["sp3", "expansion"];
+const pages = ["dashboard"];
 const settings = ["Logout"];
 
-function ResponsiveAppBar() {
+function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   // const router = useRouter();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -142,7 +142,7 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGorw: 1, display: "flex" }}>
-            {session && (
+            {/* {session && (
               <Box sx={{ display: "flex" }}>
                 <Typography
                   sx={{
@@ -157,7 +157,7 @@ function ResponsiveAppBar() {
                   <Avatar alt={session.user.name} src={session.user.image} />
                 </IconButton>
               </Box>
-            )}
+            )} */}
 
             <Menu
               sx={{ mt: "45px" }}
@@ -187,4 +187,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar;
