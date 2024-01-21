@@ -24,7 +24,7 @@ export default function SignIn() {
 
 
   const handleLogin = async () => {
-    await signIn("google", { callbackUrl: "/expansion" });
+    await signIn("google", { callbackUrl: "/home" });
   };
 
   const handleSubmit = (event) => {

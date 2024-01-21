@@ -1,19 +1,9 @@
 import { google } from "googleapis";
-// import { google } from "google-auth-library";
 const keyFile = "./service-account-key.json";
 const spreadsheetId = "1zsEhTcofjSCTL57222zJotqDqG3QUV8OI0PkS6EQyUg";
-import { NextResponse, NextRequest } from 'next/server'
-import bodyParser from 'body-parser';
-
-
-
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  if (request.method !== "POST") {
-    return NextResponse.json({ status: 405 },{message: "Method is not allowed"})
-  }
-
-
   const formData = await request.json();
   console.log(formData);
   const auth = new google.auth.GoogleAuth({
@@ -39,14 +29,11 @@ export async function POST(request) {
       resource,
     });
 
-    console.log(
-      "Row appended successfully:",
-      result.data.updates.updatedCells
-    );
+    console.log("Row appended successfully:", result.data.updates.updatedCells);
 
-    return NextResponse.json({ status: 200 },{message: "OK"})
+    return NextResponse.json({ status: 200 }, { message: "OK" });
   } catch (error) {
     console.error("Error appending row to spreadsheet:", error.message);
-    NextResponse.json({ error: 'Internal Server Error' },{ status: 200 })
+    NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
