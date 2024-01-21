@@ -6,8 +6,9 @@
 .pnp.js
 .yarn/install-state.gz
 
-#keys
-/lib/service-account-key.json
+# secrets
+/secrets/
+
 
 # testing
 /coverage
