@@ -7,7 +7,7 @@ const path = require("path");
 
 const spreadsheetId = process.env.GOOGLE_SPREDSHEET_ID;
 // const keyFile = path.join(process.cwd(), 'service-account-key.json');
-const keyFile = "./service-account-key.json";
+const keyFile = "./lib/service-account-key.json";
 // console.log("spreadsheetId",spreadsheetId)
 console.log("keyFile", keyFile);
 
