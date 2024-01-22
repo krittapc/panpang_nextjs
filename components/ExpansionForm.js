@@ -15,7 +15,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useFormState } from "react-dom";
-import { create } from "@/lib/action";
+import { create } from "@/action";
 import { useRouter } from "next/navigation";
 
 const initialState = {
