@@ -7,7 +7,7 @@ const path = require("path");
 
 const spreadsheetId = process.env.GOOGLE_SPREDSHEET_ID;
 // const keyFile = path.join(process.cwd(), 'service-account-key.json');
-// const keyFile = process.env.KEY_FILE;
+const keyFile = process.env.SERVICE_ACCOUNT_KEY;
 // console.log("spreadsheetId",spreadsheetId)
 // console.log("keyFile", keyFile);
 
@@ -29,7 +29,7 @@ export const create = async (prevState, formData) => {
     contact,
   } = Object.fromEntries(formData);
   const auth = new google.auth.GoogleAuth({
-    credentials: JSON.parse(process.env.KEY_FILE),
+    credentials: JSON.parse(keyFile),
     // keyFile,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
