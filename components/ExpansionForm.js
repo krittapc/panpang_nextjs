@@ -21,6 +21,7 @@ const initialState = {
 };
 
 export default function ExpansionForm({ setOpen, profile }) {
+  console.log("expansion userId: " + profile.userId)
   const [state, formAction] = useFormState(create, initialState);
   // const [profile, setProfile] = useState(null);
   // const { liff } = useLiff();

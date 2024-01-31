@@ -17,6 +17,7 @@ export default function Home() {
       (async () => {
         const profile = await liff.getProfile();
         setProfile(profile);
+        console.log("userId: " + profile.userId)
       })();
     } else {
       liff?.login();
