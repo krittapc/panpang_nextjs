@@ -79,21 +79,28 @@ export const create = async (prevState, formData) => {
     headers: myHeaders,
     body: raw,
     redirect: "follow",
+    cache: "no-store"
   };
 
-  fetch(
-    "https://script.google.com/macros/s/AKfycbwrs6aePWtKBr2_eOE1SOG0Bcd6XKOyXUn1pFMlmCYrNcHTbHryGgF0294Wu4Ndpd2M/exec?action=addTicket",
-    requestOptions
-  )
-    .then((response) => response.text())
-    .then((result) => {
-      console.log(result);
-      return { success: true, message: "Recording successfully" };
-    })
-    .catch((error) => {
-      console.log("error", error);
-      return { success: false, message: error.message };
-    });
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbwrs6aePWtKBr2_eOE1SOG0Bcd6XKOyXUn1pFMlmCYrNcHTbHryGgF0294Wu4Ndpd2M/exec?action=addTicket",
+      requestOptions
+    );
+    return { success: true, message: "Recording successfully" };
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+
+  // .then((response) => response.text())
+  // .then((result) => {
+  //   console.log(result);
+  //   return { success: true, message: "Recording successfully" };
+  // })
+  // .catch((error) => {
+  //   console.log("error", error);
+  //   return { success: false, message: error.message };
+  // });
 
   // const date = format(new Date(), "dd/MM/yyyy, HH:mm:ss");
   // const auth = new google.auth.GoogleAuth({

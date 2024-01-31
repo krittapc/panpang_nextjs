@@ -17,7 +17,7 @@ import { create } from "@/action";
 import { useLiff } from "./LiffProvider";
 
 const initialState = {
-  message: null,
+  message: '',
 };
 
 export default function ExpansionForm({ setOpen, profile }) {
