@@ -1,54 +1,4 @@
-// // FETCH DATA WITH AN API
 "use client";
-// import { NextResponse, NextRequest } from "next/server";
-// import * as React from "react";
-// import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
-
-// const rows = [
-//   { id: 1, col1: "Hello", col2: "World" },
-//   { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-//   { id: 3, col1: "MUI", col2: "is Amazing" },
-// ];
-
-// const columns = [
-//   { field: "col1", headerName: "Column 1", width: 150 },
-//   { field: "col2", headerName: "Column 2", width: 150 },
-// ];
-
-// // const getData = async () => {
-// //   const res = await fetch("http://localhost:3000/api/read");
-// //   //{next:{revalidate:3600}}
-
-// //   if (res.status !== 200) {
-// //     throw new Error("Something went wrong");
-// //   }
-
-// //   return res.json();
-// // };
-
-// const DashboardPage = async () => {
-//   // FETCH DATA WITH AN API
-//   // const tickets = await getData();
-//   // console.log(tickets.data);
-
-//   // FETCH DATA WITHOUT AN API
-//   // const posts = await getPosts();
-
-//   return (
-//     // <div >
-//     //   {tickets.data.map((ticket) => (
-//     //     <div key={ticket}>
-//     //       <p>{ticket}</p>
-//     //     </div>
-//     //   ))}
-//     // </div>
-//     <div style={{ height: 300, width: "100%" }}>
-//       <DataGrid rows={rows} columns={columns} />
-//     </div>
-//   );
-// };
-
-// export default DashboardPage;
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -70,13 +20,14 @@ import {
   randomId,
   randomArrayItem,
 } from "@mui/x-data-grid-generator";
-import { Container } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 
 const roles = ["Market", "Finance", "Development"];
 const randomRole = () => {
   return randomArrayItem(roles);
 };
 
+// Edit to fetch API from spreadsheet
 const initialRows = [
   {
     id: randomId(),
@@ -84,35 +35,7 @@ const initialRows = [
     age: 25,
     joinDate: randomCreatedDate(),
     role: randomRole(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 36,
-    joinDate: randomCreatedDate(),
-    role: randomRole(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 19,
-    joinDate: randomCreatedDate(),
-    role: randomRole(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 28,
-    joinDate: randomCreatedDate(),
-    role: randomRole(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 23,
-    joinDate: randomCreatedDate(),
-    role: randomRole(),
-  },
+  }
 ];
 
 function EditToolbar(props) {
@@ -137,7 +60,7 @@ function EditToolbar(props) {
 }
 
 export default function FullFeaturedCrudGrid() {
-  const [rows, setRows] = React.useState(initialRows);
+  const [rows, setRows] = React.useState(initialRows); //use data from fetch
   const [rowModesModel, setRowModesModel] = React.useState({});
 
   const handleRowEditStop = (params, event) => {
@@ -255,35 +178,43 @@ export default function FullFeaturedCrudGrid() {
   ];
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Box
-        sx={{
-          height: 500,
-          width: "100%",
-          "& .actions": {
-            color: "text.secondary",
-          },
-          "& .textPrimary": {
-            color: "text.primary",
-          },
-        }}
-      >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          editMode="row"
-          rowModesModel={rowModesModel}
-          onRowModesModelChange={handleRowModesModelChange}
-          onRowEditStop={handleRowEditStop}
-          processRowUpdate={processRowUpdate}
-          slots={{
-            toolbar: EditToolbar,
+    <>
+      <CssBaseline />
+      <Container component="main" sx={{ my: 3, p: 3 }}>
+        {/* <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+        > */}
+        <Box
+          sx={{
+            height: 500,
+            width: "100%",
+            "& .actions": {
+              color: "text.secondary",
+            },
+            "& .textPrimary": {
+              color: "text.primary",
+            },
           }}
-          slotProps={{
-            toolbar: { setRows, setRowModesModel },
-          }}
-        />
-      </Box>
-    </Container>
+        >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            editMode="row"
+            rowModesModel={rowModesModel}
+            onRowModesModelChange={handleRowModesModelChange}
+            onRowEditStop={handleRowEditStop}
+            processRowUpdate={processRowUpdate}
+            slots={{
+              toolbar: EditToolbar,
+            }}
+            slotProps={{
+              toolbar: { setRows, setRowModesModel },
+            }}
+          />
+        </Box>
+        {/* </Paper> */}
+      </Container>
+    </>
   );
 }

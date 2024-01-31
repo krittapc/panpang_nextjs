@@ -18,8 +18,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const pages = ["dashboard"];
-const settings = ["Logout"];
+const pages = [""];
+const settings = [""];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -71,7 +71,7 @@ function Navbar() {
             PANPANG
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -106,7 +106,7 @@ function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -114,6 +114,7 @@ function Navbar() {
             component="a"
             href="/"
             sx={{
+              justifyContent: "center",
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
@@ -126,7 +127,7 @@ function Navbar() {
           >
             PANPANG
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link href={page} passHref key={page} style={{ textDecoration: 'none' }}>
                 <Button
@@ -139,9 +140,9 @@ function Navbar() {
                 </Button>
               </Link>
             ))}
-          </Box>
+          </Box> */}
 
-          <Box sx={{ flexGorw: 1, display: "flex" }}>
+          {/* <Box sx={{ flexGorw: 1, display: "flex" }}> */}
             {/* {session && (
               <Box sx={{ display: "flex" }}>
                 <Typography
@@ -159,7 +160,7 @@ function Navbar() {
               </Box>
             )} */}
 
-            <Menu
+            {/* <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -181,7 +182,7 @@ function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
