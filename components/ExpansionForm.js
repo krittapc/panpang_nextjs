@@ -191,8 +191,8 @@ export default function ExpansionForm({ setOpen, profile }) {
                   Phra Nakhon Si Ayutthaya
                 </MenuItem>
                 <MenuItem value={"Ang Thong"}>Ang Thong</MenuItem>
-                <MenuItem value={"Sing Buri"}>Sing Buri</MenuItem>
-                <MenuItem value={"Suphan Buri"}>Suphan Buri</MenuItem>
+                <MenuItem value={"Lopburi"}>Lopburi</MenuItem>
+                <MenuItem value={"Saraburi"}>Saraburi</MenuItem>
               </Select>
             </FormControl>
           </Grid>
